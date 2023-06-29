@@ -14,7 +14,8 @@ import {
   RESOURCE,
 } from "@dataverse/runtime-connector";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./components/Home";
+import  Home  from "../src/components/Home";
+import Dashboard from "./components/Dashboard";
 const runtimeConnector = new RuntimeConnector(Extension);
 
 const app = "test001"; //fxy001 (mainnet)   test001 (testnet)
@@ -47,11 +48,12 @@ function App() {
     }
   };
   return (
-    <>
+    <div className=" bg-[#171725]">
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
-    </>
+    </div>
   );
 }
 
