@@ -8,15 +8,17 @@ import {
   Extension,
   WALLET,
 } from "@dataverse/runtime-connector";
+import { useNavigate } from "react-router-dom";
 const runtimeConnector = new RuntimeConnector(Extension);
-
 function Home({ wallet, setWallet }) {
+  const navigate = useNavigate();
   const [address, setAddress] = useState();
   const connectWallet = async () => {
     try {
       const res = await runtimeConnector.connectWallet();
       setWallet(res.wallet);
       setAddress(res.address);
+      navigate("/dashboard");
       return res.address;
     } catch (error) {
       console.error(error);

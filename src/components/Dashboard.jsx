@@ -17,17 +17,116 @@ import { IoMdDocument } from "react-icons/io";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { useState } from "react";
 import lighthouse from "@lighthouse-web3/sdk";
+import {
+  RuntimeConnector,
+  Extension,
+  FolderType,
+  StructuredFolders,
+  Currency,
+  Mode,
+  StorageProviderName,
+  DecryptionConditions,
+  SignMethod,
+  WALLET,
+  RESOURCE,
+} from "@dataverse/runtime-connector";
+import { useNavigate } from "react-router-dom";
+const app = "hitest"; //mainnet002 (mainnet)   test001 (testnet)
+const slug = "test001";
+const postVersion = "0.0.1";
 
-const Dashboard = () => {
+const modelId =
+  "kjzl6hvfrbw6c9k5a5v8gph1asovcygtq10fhuhp96q527ss6czmy95eclkdhxo"; // (testnet)
+// kjzl6hvfrbw6c7zy79iqdnav50bustri0cnubdgshp4562iin3zdpkuivk0bqrq // (mainnet)
+const storageProvider = {
+  name: StorageProviderName.Lighthouse,
+  apiKey: "6c25798c.81d6f7c5657f43b4bbbd21e745834b78", // input your api key to call uploadFile successfully
+};
+const runtimeConnector = new RuntimeConnector(Extension);
+const Dashboard = ({ wallet, setWallet }) => {
   const [uploads, setUploads] = useState();
+  const [pkh, setPkh] = useState("");
+  const [currentPkh, setCurrentPkh] = useState("");
+  const [pkpWallet, setPKPWallet] = useState({
+    address: "",
+    publicKey: "",
+  });
+  const [folderId, setFolderId] = useState("");
+  const [indexFileId, setIndexFileId] = useState("");
+  const [folders, setFolders] = useState();
   useEffect(async () => {
     const c = await lighthouse.getUploads(
       "0x6456368f9149DE6015d939f19571B231ab72297E"
     );
     setUploads(c);
-  });
+
+    return () => {};
+  }, []);
 
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const getDAppInfo = async () => {
+    const appsInfo = await runtimeConnector.getDAppInfo(app);
+    console.log(appsInfo);
+    return appsInfo;
+  };
+
+  const createCapability = async () => {
+    // await connectWallet();
+    // // await switchNetwork();
+    const pkh = await runtimeConnector.createCapability({
+      app,
+      resource: RESOURCE.CERAMIC,
+      wallet,
+    });
+    setPkh(pkh);
+    console.log(pkh);
+    return pkh;
+  };
+
+  const getDefaultFolderId = async () => {
+    if (!folders) {
+      throw "Please call readFolders first";
+    }
+    const { defaultFolderName } = await getDAppInfo();
+    const folder = Object.values(folders).find(
+      (folder) => folder.options.folderName === defaultFolderName
+    );
+    return folder.folderId;
+  };
+  /*** Folders ***/
+
+  /*** Files ***/
+  const uploadFile = async (event) => {
+    createCapability();
+    try {
+      const file = event.target.files[0];
+      console.log(file);
+      const fileName = file.name;
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      const fileBase64 = await new Promise((resolve) => {
+        reader.addEventListener("load", async (e) => {
+          resolve(e.target.result);
+        });
+      });
+
+      console.log(fileBase64);
+
+      const res = await runtimeConnector.uploadFile({
+        folderId,
+        fileBase64,
+        fileName,
+        encrypted: false,
+        storageProvider,
+      });
+      setIndexFileId(res.newFile.indexFileId);
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -49,10 +148,16 @@ const Dashboard = () => {
           </span>
         </div>
 
-            <div className=" mt-[100px] flex flex-col items-center" >
-            <input type="file" onChange={handleFileChange} className="file-input file-input-bordered file-input-info w-full max-w-xs" />
-                <button onClick={handleUpload} className="nav-ctf mt-5">Upload</button>
-            </div>
+        <div className=' mt-[100px] flex flex-col items-center'>
+          <input
+            type='file'
+            onChange={uploadFile}
+            className='file-input file-input-bordered file-input-info w-full max-w-xs'
+          />
+          {/* <button onClick={uploadFile} className='nav-ctf mt-5'>
+            Upload
+          </button> */}
+        </div>
 
         <div className=' mt-[150px] flex flex-col gap-3 text-[23px]'>
           <div className=' bg-[#1C2334] rounded-lg py-2 px-2 flex gap-5 items-center'>
