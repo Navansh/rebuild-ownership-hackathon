@@ -55,15 +55,15 @@ const Dashboard = ({ wallet, setWallet }) => {
   const [folderId, setFolderId] = useState("");
   const [indexFileId, setIndexFileId] = useState("");
   const [folders, setFolders] = useState();
-  useEffect(async () => {
+  const getUploads = async () => {
     const c = await lighthouse.getUploads(
       "0x6456368f9149DE6015d939f19571B231ab72297E"
     );
     // console.log(c["data"]["fileList"]);
     setUploads(c);
-    console.log("The value is ", uploads);
-
-    return () => {};
+  };
+  useEffect(async () => {
+    getUploads();
   }, []);
 
   const [selectedFile, setSelectedFile] = useState(null);
