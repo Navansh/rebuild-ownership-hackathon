@@ -49,16 +49,10 @@ const Dashboard = () => {
           </span>
         </div>
 
-        <div className=' mt-[100px] flex flex-col items-center'>
-          <input
-            type='file'
-            onChange={handleFileChange}
-            className='file-input file-input-bordered file-input-info w-full max-w-xs'
-          />
-          <button onClick={handleUpload} className='nav-ctf mt-5'>
-            Upload
-          </button>
-        </div>
+            <div className=" mt-[100px] flex flex-col items-center" >
+            <input type="file" onChange={handleFileChange} className="file-input file-input-bordered file-input-info w-full max-w-xs" />
+                <button onClick={handleUpload} className="nav-ctf mt-5">Upload</button>
+            </div>
 
         <div className=' mt-[150px] flex flex-col gap-3 text-[23px]'>
           <div className=' bg-[#1C2334] rounded-lg py-2 px-2 flex gap-5 items-center'>
