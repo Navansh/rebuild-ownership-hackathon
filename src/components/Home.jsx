@@ -40,10 +40,10 @@ function Home({ wallet, setWallet }) {
         </nav>
         <div className='home-content'>
           <div className='home-head'>
-            Keep life organized and work moving--all in one place
+            Keep life secure and organized--all in one place
           </div>
           <div className='home-content1'>
-            Alpha Drive gives you secure access to all your files. Collaborate
+            DocProtect gives you secure access to all your files. Collaborate
             with friends, family, and coworkers from any device.
           </div>
         </div>
