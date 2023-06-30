@@ -48,7 +48,7 @@ function App() {
     }
   };
   return (
-    <div className=" bg-[#171725]">
+    <div className="overall">
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>

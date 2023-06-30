@@ -10,6 +10,7 @@
   align-items: center;
   font-size: 1rem;
   position: sticky;
+
   top: 0;
   z-index: 200000000;
 }
@@ -18,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+	padding-top: 15px;
   max-height: 72px;
   width: 100vw;
 }
@@ -38,11 +40,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* padding: 12px 24px; */
+  padding: 12px 24px;
   width: 120px;
   font-weight: 500;
   height: 48px;
-  /* margin-right: 60px; */
+  margin-right: -100px;
   background: #6a4bffff;
   border-radius: 14px;
   box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
@@ -67,4 +69,28 @@
   position: absolute;
   width: 100vw;
   height: 100vh;
+	z-index: -1;
+}
+
+.home-content{
+	z-index: 2;
+	color: white;
+	font-size:25px;
+	font-family: "Epilogue";
+	margin-left: 55px;
+}
+
+.home-head{
+	margin-top: 130px;
+	font-size:52px;
+	width: 639px;
+}
+
+.home-content1{
+	font-family: Epilogue; /* Heading */
+  font-size: 20px; 
+  line-height: 30px; 
+  color: #9095A0FF;
+	margin-top: 22px;
+	width: 660px;
 }
