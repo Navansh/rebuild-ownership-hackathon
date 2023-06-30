@@ -277,6 +277,7 @@ const Dashboard = ({ wallet, setWallet }) => {
         </div>
       </div>
 
+    {/* Last Section  */}
       <div className=' w-[20%] flex flex-col text-white ml-9 items-center'>
         <div className=' flex gap-4 items-center'>
           <AiOutlineUser className=' text-[30px]'></AiOutlineUser>
@@ -301,7 +302,7 @@ const Dashboard = ({ wallet, setWallet }) => {
           </div>
         </div>
       </div>
-      {/* Last Section  */}
+      
     </div>
   );
 };
