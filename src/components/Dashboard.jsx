@@ -31,6 +31,7 @@ import {
   RESOURCE,
 } from "@dataverse/runtime-connector";
 import { useNavigate } from "react-router-dom";
+import Row from "./Row";
 const app = "hitest"; //mainnet002 (mainnet)   test001 (testnet)
 const slug = "test001";
 const postVersion = "0.0.1";
@@ -59,6 +60,7 @@ const Dashboard = ({ wallet, setWallet }) => {
       "0x6456368f9149DE6015d939f19571B231ab72297E"
     );
     setUploads(c);
+    console.log("The value is ",setUploads);
 
     return () => {};
   }, []);
@@ -225,54 +227,35 @@ const Dashboard = ({ wallet, setWallet }) => {
         <div className=' mt-5'>
           <p className=' text-[30px]'>Recent Files</p>
           <div className=' flex flex-col gap-2'>
-            <div className=' flex flex-row border-b-2 items-center gap-8 justify-around'>
-              <FcAreaChart className=' text-[40px]'></FcAreaChart>
-              <p className=' text-[23px]'>My Report.docx</p>
-              <p>7 MB</p>
-              <FiMoreHorizontal className=' text-[30px]' />
-            </div>
+          {
+            <>
+            console.log(uploads);
+            ((uploads))
+                ?  
+                {
 
-            <div className=' flex flex-row border-b-2 items-center gap-8 justify-around'>
-              <FcAreaChart className=' text-[40px]'></FcAreaChart>
-              <p className=' text-[23px]'>My Report.docx</p>
-              <p>7 MB</p>
-              <FiMoreHorizontal className=' text-[30px]' />
-            </div>
-
-            <div className=' flex flex-row border-b-2 items-center gap-8 justify-around'>
-              <FcAreaChart className=' text-[40px]'></FcAreaChart>
-              <p className=' text-[23px]'>My Report.docx</p>
-              <p>7 MB</p>
-              <FiMoreHorizontal className=' text-[30px]' />
-            </div>
-
-            <div className=' flex flex-row border-b-2 items-center gap-8 justify-around'>
-              <FcAreaChart className=' text-[40px]'></FcAreaChart>
-              <p className=' text-[23px]'>My Report.docx</p>
-              <p>7 MB</p>
-              <FiMoreHorizontal className=' text-[30px]' />
-            </div>
-
-            <div className=' flex flex-row border-b-2 items-center gap-8 justify-around'>
-              <FcAreaChart className=' text-[40px]'></FcAreaChart>
-              <p className=' text-[23px]'>My Report.docx</p>
-              <p>7 MB</p>
-              <FiMoreHorizontal className=' text-[30px]' />
-            </div>
-
-            <div className=' flex flex-row border-b-2 items-center gap-8 justify-around'>
-              <FcAreaChart className=' text-[40px]'></FcAreaChart>
-              <p className=' text-[23px]'>My Report.docx</p>
-              <p>7 MB</p>
-              <FiMoreHorizontal className=' text-[30px]' />
-            </div>
-
-            <div className=' flex flex-row border-b-2 items-center gap-8 justify-around'>
-              <FcAreaChart className=' text-[40px]'></FcAreaChart>
-              <p className=' text-[23px]'>My Report.docx</p>
-              <p>7 MB</p>
-              <FiMoreHorizontal className=' text-[30px]' />
-            </div>
+                    uploads.map((upload) => {
+                    return (
+                        <Row fileName={upload.fileName} fileSize={upload.fileSizeInBytes}></Row>
+                    )
+                    })
+                    
+                } 
+                :
+                {
+                    (
+                        <div className=' flex flex-col gap-2'>
+                            <div className=' flex flex-row gap-2 items-center'>
+                                <FcFile className=' text-[50px]'></FcFile>
+                                <p>No files uploaded yet</p>
+                            </div>
+                        </div>
+                    )
+                }
+          
+            </>
+            
+          }
           </div>
         </div>
       </div>
