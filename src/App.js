@@ -14,7 +14,7 @@ import {
   RESOURCE,
 } from "@dataverse/runtime-connector";
 import { Routes, Route } from "react-router-dom";
-import  Home  from "../src/components/Home";
+import Home from "../src/components/Home";
 import Dashboard from "./components/Dashboard";
 const runtimeConnector = new RuntimeConnector(Extension);
 
@@ -48,10 +48,16 @@ function App() {
     }
   };
   return (
-    <div className="overall">
+    <div className='overall'>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route
+          path='/'
+          element={<Home wallet={wallet} setWallet={setWallet} />}
+        />
+        <Route
+          path='/dashboard'
+          element={<Dashboard wallet={wallet} setWallet={setWallet} />}
+        />
       </Routes>
     </div>
   );
