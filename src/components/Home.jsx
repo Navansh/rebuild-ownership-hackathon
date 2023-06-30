@@ -36,7 +36,6 @@ function Home({ wallet, setWallet }) {
             </button>
           </div>
         </nav>
-
         <div className='home-content'>
           <div className='home-head'>
             Keep life organized and work moving--all in one place

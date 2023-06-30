@@ -25,6 +25,7 @@ const Dashboard = () => {
       "0x6456368f9149DE6015d939f19571B231ab72297E"
     );
     setUploads(c);
+    console.log(uploads);
   });
 
   const [selectedFile, setSelectedFile] = useState(null);
