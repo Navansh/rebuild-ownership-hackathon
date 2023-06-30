@@ -6,7 +6,7 @@ function Home() {
 	return (
 		<>
 			<div className="container">
-        <img src={img} alt="" />
+                <img src={img} alt="" />
 				<nav className="navbar">
 					<div className="nav-container">
 						<NavLink exact to="/" className="nav-logo">
