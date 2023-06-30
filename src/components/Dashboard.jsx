@@ -59,8 +59,9 @@ const Dashboard = ({ wallet, setWallet }) => {
     const c = await lighthouse.getUploads(
       "0x6456368f9149DE6015d939f19571B231ab72297E"
     );
+    // console.log(c["data"]["fileList"]);
     setUploads(c);
-    console.log("The value is ",setUploads);
+    console.log("The value is ", uploads);
 
     return () => {};
   }, []);
@@ -227,40 +228,24 @@ const Dashboard = ({ wallet, setWallet }) => {
         <div className=' mt-5'>
           <p className=' text-[30px]'>Recent Files</p>
           <div className=' flex flex-col gap-2'>
-          {
-            <>
-            console.log(uploads);
-            ((uploads))
-                ?  
-                {
-
-                    uploads.map((upload) => {
-                    return (
-                        <Row fileName={upload.fileName} fileSize={upload.fileSizeInBytes}></Row>
-                    )
-                    })
-                    
-                } 
-                :
-                {
-                    (
-                        <div className=' flex flex-col gap-2'>
-                            <div className=' flex flex-row gap-2 items-center'>
-                                <FcFile className=' text-[50px]'></FcFile>
-                                <p>No files uploaded yet</p>
-                            </div>
-                        </div>
-                    )
-                }
-          
-            </>
-            
-          }
+            {uploads ? (
+              // console.log(uploads["data"].fileList)
+              uploads["data"]["fileList"].map((upload) => {
+                return (
+                  <Row
+                    fileName={upload["fileName"]}
+                    fileSize={upload["fileSizeInBytes"]}
+                  />
+                );
+              })
+            ) : (
+              <p>No files were uploaded yet </p>
+            )}
           </div>
         </div>
       </div>
 
-    {/* Last Section  */}
+      {/* Last Section  */}
       <div className=' w-[20%] flex flex-col text-white ml-9 items-center'>
         <div className=' flex gap-4 items-center'>
           <AiOutlineUser className=' text-[30px]'></AiOutlineUser>
@@ -285,7 +270,6 @@ const Dashboard = ({ wallet, setWallet }) => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
