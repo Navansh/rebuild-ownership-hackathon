@@ -15,14 +15,14 @@ import {FiMoreHorizontal} from "react-icons/fi";
 const Dashboard = () => (
     <div className=" max-w-[1440px] h-screen mx-auto py-6 flex flex-row">
         {/* //Sidebar  */}
-        <div className="w-[20%] px-4 rounded-lg max-h-[800px] bg-[#242446] flex flex-col text-white ">
+        <div className="w-[20%] px-4 rounded-lg max-h-[800px] bg-[#18192D] flex flex-col text-white ">
             <div className=" flex flex-row items-center gap-5">
                 <p className=" text-[30px]">DocProtect </p>
                 <span><FiCloud></FiCloud></span>
             </div>
 
             <div className=" mt-[200px] flex flex-col gap-3 text-[23px]">
-                <div className=" bg-[#6a4bff] rounded-lg py-2 px-2 flex gap-5 items-center">
+                <div className=" bg-[#1C2334] rounded-lg py-2 px-2 flex gap-5 items-center">
                     <BsBox></BsBox>
                     <p>Dashboard</p>
                 </div>
