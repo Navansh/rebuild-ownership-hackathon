@@ -10,9 +10,22 @@ import { FcAudioFile, FcVideoFile , FcImageFile, FcFile, FcAreaChart} from "reac
 import {IoDocumentsOutline} from "react-icons/io5";
 import {IoMdDocument} from "react-icons/io";
 import {FiMoreHorizontal} from "react-icons/fi";
+import { useState } from "react";
 
+const Dashboard = () => {
 
-const Dashboard = () => (
+    const [selectedFile, setSelectedFile] = useState(null);
+    
+    const handleFileChange = (event) => {
+      setSelectedFile(event.target.files[0]);
+    };
+  
+    const handleUpload = () => {
+      console.log(selectedFile);
+      // Add the logic to upload the file to the Dataverse's Server
+    };
+
+    return (
     <div className=" max-w-[1440px] h-screen mx-auto py-6 flex flex-row">
         {/* //Sidebar  */}
         <div className="w-[20%] px-4 rounded-lg max-h-[800px] bg-[#18192D] flex flex-col text-white ">
@@ -21,7 +34,12 @@ const Dashboard = () => (
                 <span><FiCloud></FiCloud></span>
             </div>
 
-            <div className=" mt-[200px] flex flex-col gap-3 text-[23px]">
+            <div className=" mt-[100px] flex flex-col items-center" >
+            <input type="file" onChange={handleFileChange} className="file-input file-input-bordered file-input-info w-full max-w-xs" />
+                <button onClick={handleUpload} className="nav-ctf mt-5">Upload</button>
+            </div>
+
+            <div className=" mt-[150px] flex flex-col gap-3 text-[23px]">
                 <div className=" bg-[#1C2334] rounded-lg py-2 px-2 flex gap-5 items-center">
                     <BsBox></BsBox>
                     <p>Dashboard</p>
@@ -165,6 +183,7 @@ const Dashboard = () => (
         </div>
         {/* Last Section  */}
     </div>
-)
+);}
 
-export default Dashboard
+
+export default Dashboard ;
