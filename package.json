@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dataverse/runtime-connector": "^1.0.59",
+    "@dataverse/runtime-connector": "latest",
     "@lighthouse-web3/sdk": "^0.2.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
