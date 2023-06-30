@@ -145,7 +145,7 @@ const Dashboard = () => (
                 <p className=" text-[23px]">Hello Degen !</p>
             </div>
 
-            <div className="stats bg-primary gap-x-1 text-primary-content absolute top-[9.25rem] left-[65rem]">
+            <div className="stats stats-vertical bg-primary gap-x-1 text-primary-content relative top-[9.25rem] -left-[1rem]">
                 <div className="stat gap-x-1">
                     <div className="stat-title">Account Storage</div>
                     <div className="stat-value">1 TB</div>
